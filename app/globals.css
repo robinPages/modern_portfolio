@@ -2,26 +2,63 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
+@layer base {
+   @font-face {
+      font-family: 'Open-sanse';
+      src: url('/fonts/OpenSauceOne-SemiBold.woff2') format('woff2');
+      font-weight: 600;
+   }
+   @font-face {
+      font-family: 'Open-sanse';
+      src: url('/fonts/OpenSauceOne-Regular.woff2') format('woff2');
+      font-weight: 400;
+   }
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+   font-family: 'Open-sanse';
+}
+
+a,
+p,
+span {
+   @apply text-sm font-semibold;
+}
+
+h1 {
+   font-size: 40px;
+   font-weight: 600;
+}
+
+.min_container {
+   @apply max-w-[68rem] px-3 md:px-8;
+}
+
+.btn_black {
+   @apply h-fit w-full rounded-full bg-black px-12 py-4  text-sm font-bold text-white transition-colors duration-300 hover:bg-zinc-800 md:w-auto;
+}
+
+.main_container:hover .bg_image {
+   @apply animate-sp transition-transform duration-[50s];
+}
+
+@keyframes spin {
+   0% {
+      transform: rotate(0deg) scale(1.2);
+   }
+
+   50% {
+      transform: rotate(70deg) scale(1.8);
+   }
+}
+.animate-sp {
+   animation: spin 4s ease-in-out infinite;
+}
+
+.bg_image {
+   min-width: 150%;
+   min-height: 150%;
+   top: -25%;
+   left: -25%;
+   transform-origin: center center;
 }
